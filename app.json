@@ -1,6 +1,6 @@
 {
-  "name": "apiai-nodejs-webhook-sample",
+  "name": "orderbot",
   "description": "a sample webhook (with authentication) for api.ai",
-  "repository": "https://github.com/supermamon/apiai-nodejs-webhook-sample",
+  "repository": "https://github.com/hamgr80/orderbot",
   "keywords": ["api.ai", "webhook", "chatbot"]
 }
