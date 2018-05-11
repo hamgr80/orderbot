@@ -5,7 +5,7 @@ app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
 
 const REQUIRE_AUTH = true
-const AUTH_TOKEN = 'an-example-token'
+const AUTH_TOKEN = '888123123'
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -36,7 +36,7 @@ app.post('/webhook', function (req, res) {
 
   // parameters are stored in req.body.result.parameters
   var userName = req.body.result.parameters['given-name']
-  var webhookReply = 'Hello ' + userName + '! Welcome from the local webhook.'
+  var webhookReply = 'Hello ' + userName + '! Welcome from the local2 webhook.'
 
   // the most basic response
   res.status(200).json({
