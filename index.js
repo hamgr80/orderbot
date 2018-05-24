@@ -59,6 +59,15 @@ app.post('/webhook', function (req, res) {
         console.log('clientid:', clientid);
         
         var json = JSON.parse(body);
+        
+        if(getFirstJSONElement(json) === 'Error'){
+          console.log('error');
+        }
+        else{
+          console.log('success');
+        }
+        
+        
         var data = JSON.parse(json);
         
         console.log('data:', data);
@@ -93,3 +102,16 @@ app.post('/webhook', function (req, res) {
 app.listen(app.get('port'), function () {
   console.log('* Webhook service is listening on port:' + app.get('port'))
 })
+
+function getFirstJSONElement(json){
+  if (json.length > 0){ 
+  var columnsIn = json[0]; 
+  for(var key in columnsIn){
+      return key;
+      break;
+    } 
+  }
+  else{
+    return 'No Columns';
+  }
+}
