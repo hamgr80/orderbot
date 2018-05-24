@@ -38,6 +38,9 @@ app.post('/webhook', function (req, res) {
 
   // parameters are stored in req.body.result.parameters
   var userName = req.body.result.parameters['given-name']
+  var requester = 'abc';
+  var query = 'select%20*%20from%20distributor';
+  var clientid = 'aaa';
   var webhookReply = 'Hello ' + userName + '! Welcome from the local3 webhook.'
   let webhookReply2 = '';
 
@@ -45,8 +48,8 @@ app.post('/webhook', function (req, res) {
   console.log('requesting post request to b2b');
   request.post({
   headers: {'content-type' : 'application/x-www-form-urlencoded'},
-  url:     'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester=abc&query=select%20*%20from%20distributor&clientid=aaa',
-  body:   'this is body'
+  url:   'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester='+requester+'&query='+query+'&clientid=' + clientid,
+  body:  'this is body'
   }, function(error, response, body) {
       if(!error && response.statusCode == 200) {
         console.log('statusCode:', response && response.statusCode);
