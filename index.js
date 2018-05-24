@@ -56,10 +56,11 @@ app.post('/webhook', function (req, res) {
     console.log('data:', data);
     console.log('dataError:', data[0].Error);
     webhookReply2 = data[0].Error;
+    
+    console.log('webhookReply:', webhookReply);
+    console.log('webhookReply2:', webhookReply2);
   });
   
-  console.log('webhookReply:', webhookReply);
-  console.log('webhookReply2:', webhookReply2);
   
   // the most basic response
   res.status(200).json({
