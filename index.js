@@ -53,6 +53,7 @@ app.post('/webhook', function (req, res) {
     console.log('body:', body);
     var info = JSON.parse(body);
     console.log('info:', info);
+    console.log('infodata:', info.Error);
   });
   
   console.log('webhookReply:', webhookReply);
