@@ -51,8 +51,8 @@ app.post('/webhook', function (req, res) {
     console.log('error:', error); 
     console.log('statusCode:', response && response.statusCode);
     console.log('body:', body);
-    console.log('body error:', body.Error[0]);
-    webhookReply2 = body.Error[0];
+    //console.log('body error:', body.Error[0]);
+    //webhookReply2 = body.Error[0];
   });
   
   console.log('webhookReply:', webhookReply);
