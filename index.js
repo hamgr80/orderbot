@@ -69,7 +69,7 @@ app.post('/webhook', function (req, res) {
         }
         else{
           console.log('data:', data);
-          webhookReply2 = data[0];
+          webhookReply2 = JSON.stringify(data[0]);
         }
         
         // the most basic success response
