@@ -48,7 +48,7 @@ app.post('/webhook', function (req, res) {
   console.log('requesting post request to b2b');
   request.post({
   headers: {'content-type' : 'application/x-www-form-urlencoded'},
-  url:   'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester='+requester+'&query='+query+'&clientid=' + clientid,
+  url:   'http://66.228.117.22/B2B_Integration%20with%20OSDP/messagebroadcast/PushToSpecificClient/?requester='+requester+'&query='+query+'&clientid=' + clientid,
   body:  'this is body'
   }, function(error, response, body) {
       if(!error && response.statusCode == 200) {
