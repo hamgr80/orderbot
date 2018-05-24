@@ -51,9 +51,10 @@ app.post('/webhook', function (req, res) {
     console.log('error:', error); 
     console.log('statusCode:', response && response.statusCode);
     console.log('body:', body);
-    var info = JSON.parse(body);
-    console.log('info:', info);
-    console.log('infodata:', info[0].Error);
+    var json = JSON.parse(body);
+    var data = JSON.parse(json);
+    console.log('data:', data);
+    console.log('dataError:', data[0].Error);
   });
   
   console.log('webhookReply:', webhookReply);
