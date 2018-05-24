@@ -59,18 +59,18 @@ app.post('/webhook', function (req, res) {
         console.log('clientid:', clientid);
         
         var json = JSON.parse(body);
-        
-        
         var data = JSON.parse(json);
         
         var firstElement = getFirstJSONElement(data);
-        console.log('firstElement: ', firstElement);
         
-        
-        console.log('data:', data);
-        console.log('dataError:', data[0].Error);
-        
-        webhookReply2 = data[0].Error;
+        if(firstElement == 'Error'){
+          console.log('data:', data);
+          webhookReply2 = data[0].Error;
+        }
+        else{
+          console.log('data:', data);
+          webhookReply2 = data[0];
+        }
         
         // the most basic success response
         res.status(200).json({
