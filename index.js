@@ -41,21 +41,16 @@ app.post('/webhook', function (req, res) {
   var webhookReply = 'Hello ' + userName + '! Welcome from the local3 webhook.'
 
   // calling b2b rest service
-  //request.post({
-    //headers: {'content-type' : 'application/x-www-form-urlencoded'},
-    //url:    'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester=abc&query=select%20*%20from%20distributor&clientid=aaa',
-    //body:   ''
-  //}, function(error, response, body){
-      //webhookReply = response;
-  //});
-  
+  console.log('requesting post request to b2b');
   request.post({
   headers: {'content-type' : 'application/x-www-form-urlencoded'},
   url:     'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester=abc&query=select%20*%20from%20distributor&clientid=aaa',
   body:   'this is body'
   }, function(error, response, body){
-  //echo = { type: 'text', text: body };
-    webhookReply = "error: " + error + " response: " + response + " body: " + body;
+    console.log('error:', error); 
+    console.log('statusCode:', response && response.statusCode);
+    console.log('body:', body);
+    //webhookReply = "error: " + error + " response: " + response + " body: " + body;
   });
   
   // the most basic response
