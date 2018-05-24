@@ -48,24 +48,36 @@ app.post('/webhook', function (req, res) {
   url:     'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester=abc&query=select%20*%20from%20distributor&clientid=aaa',
   body:   'this is body'
   }, function(error, response, body) {
-    console.log('error:', error); 
-    console.log('statusCode:', response && response.statusCode);
-    console.log('body:', body);
-    var json = JSON.parse(body);
-    var data = JSON.parse(json);
-    console.log('data:', data);
-    console.log('dataError:', data[0].Error);
-    webhookReply2 = data[0].Error;
-    
-    console.log('webhookReply:', webhookReply);
-    console.log('webhookReply2:', webhookReply2);
-    
-    // the most basic response
-    res.status(200).json({
-      source: 'webhook',
-      speech: webhookReply2,
-      displayText: webhookReply2
-    })
+      if(!error && response.statusCode == 200) {
+        console.log('statusCode:', response && response.statusCode);
+        console.log('body:', body);
+        
+        var json = JSON.parse(body);
+        var data = JSON.parse(json);
+        
+        console.log('data:', data);
+        console.log('dataError:', data[0].Error);
+        
+        webhookReply2 = data[0].Error;
+        
+        // the most basic success response
+        res.status(200).json({
+        source: 'webhook',
+        speech: webhookReply2,
+        displayText: webhookReply2
+        })
+      }
+      else{
+        console.log('error:', error); 
+        console.log('statusCode:', response && response.statusCode);
+        
+        // the most basic error response
+        res.status(response.statusCode).json({
+          source: 'webhook',
+          speech: 'Error from b2b service:' + error,
+          displayText: 'Error from b2b service:' + error
+        })
+      }
   });
 })
 
