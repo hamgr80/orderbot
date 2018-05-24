@@ -38,15 +38,24 @@ app.post('/webhook', function (req, res) {
 
   // parameters are stored in req.body.result.parameters
   var userName = req.body.result.parameters['given-name']
-  var webhookReply = 'Hello ' + userName + '! Welcome from the local2 webhook.'
+  var webhookReply = 'Hello ' + userName + '! Welcome from the local3 webhook.'
 
   // calling b2b rest service
+  //request.post({
+    //headers: {'content-type' : 'application/x-www-form-urlencoded'},
+    //url:    'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester=abc&query=select%20*%20from%20distributor&clientid=aaa',
+    //body:   ''
+  //}, function(error, response, body){
+      //webhookReply = response;
+  //});
+  
   request.post({
-    headers: {'content-type' : 'application/x-www-form-urlencoded'},
-    url:    'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester=abc&query=select%20*%20from%20distributor&clientid=aaa',
-    body:   ''
+  headers: {'content-type' : 'application/x-www-form-urlencoded'},
+  url:     'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester=abc&query=select%20*%20from%20distributor&clientid=aaa',
+  body:   'this is body'
   }, function(error, response, body){
-      webhookReply = response;
+  //echo = { type: 'text', text: body };
+    webhookReply = "error: " + error + " response: " + response + " body: " + body;
   });
   
   // the most basic response
