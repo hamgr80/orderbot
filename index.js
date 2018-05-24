@@ -47,7 +47,7 @@ app.post('/webhook', function (req, res) {
   headers: {'content-type' : 'application/x-www-form-urlencoded'},
   url:     'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester=abc&query=select%20*%20from%20distributor&clientid=aaa',
   body:   'this is body'
-  }, function(error, response, body){
+  }, function(error, response, body) {
     console.log('error:', error); 
     console.log('statusCode:', response && response.statusCode);
     console.log('body:', body);
@@ -59,15 +59,14 @@ app.post('/webhook', function (req, res) {
     
     console.log('webhookReply:', webhookReply);
     console.log('webhookReply2:', webhookReply2);
+    
+    // the most basic response
+    res.status(200).json({
+      source: 'webhook',
+      speech: webhookReply2,
+      displayText: webhookReply2
+    })
   });
-  
-  
-  // the most basic response
-  res.status(200).json({
-    source: 'webhook',
-    speech: webhookReply,
-    displayText: webhookReply
-  })
 })
 
 app.listen(app.get('port'), function () {
