@@ -40,7 +40,7 @@ app.post('/webhook', function (req, res) {
   var userName = req.body.result.parameters['given-name']
   var requester = 'abc';
   var query = 'select%20*%20from%20distributor';
-  var clientid = 'aaa';
+  var clientid = '98038001';
   var webhookReply = 'Hello ' + userName + '! Welcome from the local3 webhook.'
   let webhookReply2 = '';
 
@@ -54,6 +54,9 @@ app.post('/webhook', function (req, res) {
       if(!error && response.statusCode == 200) {
         console.log('statusCode:', response && response.statusCode);
         console.log('body:', body);
+        console.log('requester:', requester);
+        console.log('query:', query);
+        console.log('clientid:', clientid);
         
         var json = JSON.parse(body);
         var data = JSON.parse(json);
@@ -73,6 +76,9 @@ app.post('/webhook', function (req, res) {
       else{
         console.log('error:', error); 
         console.log('statusCode:', response && response.statusCode);
+        console.log('requester:', requester);
+        console.log('query:', query);
+        console.log('clientid:', clientid);
         
         // the most basic error response
         res.status(response.statusCode).json({
