@@ -1,5 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const request = require('request');
+
 const app = express()
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
@@ -38,6 +40,15 @@ app.post('/webhook', function (req, res) {
   var userName = req.body.result.parameters['given-name']
   var webhookReply = 'Hello ' + userName + '! Welcome from the local2 webhook.'
 
+  // calling b2b rest service
+  request.post({
+    headers: {'content-type' : 'application/x-www-form-urlencoded'},
+    url:    'http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/?requester=abc&query=select%20*%20from%20distributor&clientid=aaa',
+    body:   ''
+  }, function(error, response, body){
+      webhookReply = response;
+  });
+  
   // the most basic response
   res.status(200).json({
     source: 'webhook',
