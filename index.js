@@ -50,7 +50,7 @@ app.post('/webhook', function (req, res) {
     console.log('error:', error); 
     console.log('statusCode:', response && response.statusCode);
     console.log('body:', body);
-    //webhookReply = "error: " + error + " response: " + response + " body: " + body;
+    webhookReply = body;
   });
   
   // the most basic response
