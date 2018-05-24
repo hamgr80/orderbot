@@ -39,7 +39,7 @@ app.post('/webhook', function (req, res) {
   // parameters are stored in req.body.result.parameters
   var userName = req.body.result.parameters['given-name']
   var webhookReply = 'Hello ' + userName + '! Welcome from the local3 webhook.'
-  const webhookReply2 = '';
+  var webhookReply2 = '';
 
   // calling b2b rest service
   console.log('requesting post request to b2b');
