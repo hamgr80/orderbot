@@ -60,13 +60,8 @@ app.post('/webhook', function (req, res) {
         
         var json = JSON.parse(body);
         
-        if(getFirstJSONElement(json) === 'Error'){
-          console.log('error');
-        }
-        else{
-          console.log('success');
-        }
-        
+        var firstElement = getFirstJSONElement(json);
+        console.log('firstElement: ', firstElement);
         
         var data = JSON.parse(json);
         
