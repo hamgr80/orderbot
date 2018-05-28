@@ -45,13 +45,22 @@ app.post('/webhook', function (req, res) {
     
     console.log('UserId :' + req.body.originalRequest.data.source.userId);
     
-    request.get({
-      headers: {'Authorization' : 'Bearer {rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=}
-'},
-      url:   'https://api.line.me/v2/bot/profile/req.body.originalRequest.data.source.userId
-    }, function(error, response, body) {
-        console.log('User Detail:' + body);
-       });
+    var headers = {
+      'Authorization':       'Bearer {rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=}',
+    }
+    
+    var options = {
+      url: 'https://api.line.me/v2/bot/profile/req.body.originalRequest.data.source.userId',
+      method: 'GET',
+      headers: headers
+    }
+
+    request(options, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+          // Print out the response body
+          console.log(body)
+      }
+    })
   }
          
 
