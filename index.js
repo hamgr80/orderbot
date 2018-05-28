@@ -36,12 +36,12 @@ app.post('/webhook', function (req, res) {
   // the value of Action from api.ai is stored in req.body.result.action
   console.log('* Received action -- %s', req.body.result.action)
   
-  if(req.body.originalRequest!){
-    console.log('Source is :' + req.body.originalRequest.source);
-    console.log('Data.Source :' + req.body.originalRequest.data.source);
+  if(!req.body.originalRequest){
+    console.log('Source is :' + req.body.result.source);
   }
   else{
-    console.log('Source is :' + req.body.result.source);
+    console.log('Source is :' + req.body.originalRequest.source);
+    console.log('Data.Source :' + req.body.originalRequest.data.source);
   }
          
 
