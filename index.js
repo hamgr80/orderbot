@@ -35,6 +35,7 @@ app.post('/webhook', function (req, res) {
 
   // the value of Action from api.ai is stored in req.body.result.action
   console.log('* Received action -- %s', req.body.result.action)
+  console.log('Source is :' + req.body.result.source);
 
   // parameters are stored in req.body.result.parameters
   var userName = req.body.result.parameters['given-name']
