@@ -36,12 +36,14 @@ app.post('/webhook', function (req, res) {
   // the value of Action from api.ai is stored in req.body.result.action
   console.log('* Received action -- %s', req.body.result.action)
   
-  if(!req.body.originalRequest){
+  if(!req.body.originalRequest){//webchat
     console.log('Source is :' + req.body.result.source);
   }
-  else{
+  else{//line
     console.log('Source is :' + req.body.originalRequest.source);
     console.log('Data.Source :' + req.body.originalRequest.data.source);
+    
+    console.log('UserId :' + req.body.originalRequest.data.source.userId);
   }
          
 
