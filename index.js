@@ -46,7 +46,8 @@ app.post('/webhook', function (req, res) {
     console.log('UserId :' + req.body.originalRequest.data.source.userId);
     
     request.get({
-      headers: {'Authorization' : 'Bearer {rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=}'},
+      headers: {'Authorization' : 'Bearer {rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=}
+'},
       url:   'https://api.line.me/v2/bot/profile/req.body.originalRequest.data.source.userId
     }, function(error, response, body) {
         console.log('User Detail:' + body);
