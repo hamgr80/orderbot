@@ -58,7 +58,10 @@ app.post('/webhook', function (req, res) {
     request(options, function (error, response, body) {
       if (!error && response.statusCode == 200) {
           // Print out the response body
-          console.log('body from get request:' + body)
+          console.log('line user detail: ' + body)
+      }
+      else{
+        console.log('error in line user detail: ' + error);
       }
     })
   }
