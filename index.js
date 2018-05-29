@@ -181,5 +181,5 @@ function getLineUserDetail(ChannelAccessToken, LineUserId){
         body_ = body;
       }
     });
-    return body_;
+    return 'this is test';
 }
