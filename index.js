@@ -1,7 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
-const syncRequest = require('sync-request')
+const line = require('@line/bot-sdk');
+//const syncRequest = require('sync-request')
 
 const app = express()
 app.use(bodyParser.json())
@@ -11,6 +12,8 @@ app.set('port', (process.env.PORT || 5000))
 const REQUIRE_AUTH = true
 const AUTH_TOKEN = '888123123'
 const CHANNEL_ACCESS_TOKEN = 'rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=';
+
+const client = new line.Client({  channelAccessToken: CHANNEL_ACCESS_TOKEN });
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -43,14 +46,27 @@ app.post('/webhook', function (req, res) {
     console.log('Source is :' + req.body.result.source);
   }
   else{//line
+    const lineUserId = req.body.originalRequest.data.source.userId;
+    
     console.log('Source is :' + req.body.originalRequest.source);
     console.log('Data.Source :' + req.body.originalRequest.data.source);
     
-    console.log('UserId :' + req.body.originalRequest.data.source.userId);
+    console.log('UserId :' + lineUserId);
     
-    const userDetail = JSON.parse(getLineUserDetail(CHANNEL_ACCESS_TOKEN, req.body.originalRequest.data.source.userId));
-    console.log('LineUserDetail: ' + userDetail);
-    console.log('LineDisplayName: ' + userDetail.displayName);
+    client.getProfile(lineUserId)
+      .then((profile) => {
+        console.log(profile.displayName);
+        console.log(profile.userId);
+        console.log(profile.pictureUrl);
+        console.log(profile.statusMessage);
+       })
+      .catch((err) => {
+        console.log(err);
+      });
+    
+    //const userDetail = JSON.parse(getLineUserDetail(CHANNEL_ACCESS_TOKEN, lineUserId));
+    //console.log('LineUserDetail: ' + userDetail);
+    //console.log('LineDisplayName: ' + userDetail.displayName);
   }
          
 
@@ -132,11 +148,11 @@ function getFirstJSONElement(json){
   }
 }
 
-function getLineUserDetail(ChannelAccessToken, LineUserId){
-  var res = syncRequest('GET', 'https://api.line.me/v2/bot/profile/' + LineUserId, {
-    headers: {
-      'Authorization':       'Bearer {'+ChannelAccessToken+'}'
-    },
-  });  
-  return res.getBody();
-}
+//function getLineUserDetail(ChannelAccessToken, LineUserId){
+//  var res = syncRequest('GET', 'https://api.line.me/v2/bot/profile/' + LineUserId, {
+//    headers: {
+//      'Authorization':       'Bearer {'+ChannelAccessToken+'}'
+//    },
+//  });  
+//  return res.getBody();
+//}
