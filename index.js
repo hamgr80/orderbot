@@ -179,5 +179,6 @@ function getLineUserDetail(ChannelAccessToken, LineUserId){
         body_ =  body;
       }
     })
+    console.log('body from message: ' + body_);
     return body_;
 }
