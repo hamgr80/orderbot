@@ -169,7 +169,7 @@ function getLineUserDetail(ChannelAccessToken, LineUserId){
     request(options, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         // Print out the response body
-        console.log('body from message: ' + body);
+        console.log('body from message: ' + body.displayName);
         body_ = body.displayName;
       }
       else{
