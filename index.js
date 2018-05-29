@@ -153,6 +153,7 @@ function getFirstJSONElement(json){
 }
 
 function getLineUserDetail(ChannelAccessToken, LineUserId){
+    let body_ = '';
     var headers = {
       'Authorization':       'Bearer {'+ChannelAccessToken+'}',
     }
@@ -166,10 +167,11 @@ function getLineUserDetail(ChannelAccessToken, LineUserId){
     request(options, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         // Print out the response body
-        return body;
+        body_ = body;
       }
       else{
-        return body;
+        body_ =  body;
       }
     })
+    return body_;
 }
