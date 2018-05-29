@@ -47,6 +47,7 @@ app.post('/webhook', function (req, res) {
     
     console.log('UserId :' + req.body.originalRequest.data.source.userId);
     
+    console.log('LineUserDetail: ' + getLineUserDetail(CHANNEL_ACCESS_TOKEN, req.body.originalRequest.data.source.userId));
     //var headers = {
     //  'Authorization':       'Bearer {'+CHANNEL_ACCESS_TOKEN+'}',
     //}
