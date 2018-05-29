@@ -47,7 +47,8 @@ app.post('/webhook', function (req, res) {
     
     console.log('UserId :' + req.body.originalRequest.data.source.userId);
     
-    console.log('LineUserDetail: ' + getLineUserDetail(CHANNEL_ACCESS_TOKEN, req.body.originalRequest.data.source.userId));
+    const data = getLineUserDetail(CHANNEL_ACCESS_TOKEN, req.body.originalRequest.data.source.userId);
+    console.log('LineUserDetail: ' + data);
     //var headers = {
     //  'Authorization':       'Bearer {'+CHANNEL_ACCESS_TOKEN+'}',
     //}
@@ -153,30 +154,31 @@ function getFirstJSONElement(json){
 }
 
 function getLineUserDetail(ChannelAccessToken, LineUserId){
-    let body_ = '';
-    var headers = {
-      'Authorization':       'Bearer {'+ChannelAccessToken+'}',
-    }
+    let body_ = 'testing';
+    return body_;
+    //var headers = {
+    //  'Authorization':       'Bearer {'+ChannelAccessToken+'}',
+    //}
     
-    var options = {
-      url: 'https://api.line.me/v2/bot/profile/' + LineUserId,
-      method: 'GET',
-      headers: headers
-    }
+    //var options = {
+    //  url: 'https://api.line.me/v2/bot/profile/' + LineUserId,
+    //  method: 'GET',
+    //  headers: headers
+    //}
 
-    request(options, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        // Print out the response body
-        console.log('body from message: ' + body);
-        return body;
-      }
-      else{
-        console.log('error in line user detail: ' + error);
-        console.log('statuscode :' + response.statusCode);
-        console.log('response :' + response.statusCode);
-        console.log('body :' + body);
-        console.log('url :' + options.url);
-        return body;
-      }
-    })
+    //request(options, function (error, response, body) {
+    //  if (!error && response.statusCode == 200) {
+    //    // Print out the response body
+    //    console.log('body from message: ' + body);
+    //    return body;
+    //  }
+    //  else{
+    //    console.log('error in line user detail: ' + error);
+    //    console.log('statuscode :' + response.statusCode);
+    //    console.log('response :' + response.statusCode);
+    //    console.log('body :' + body);
+    //    console.log('url :' + options.url);
+    //    return body;
+    //  }
+    //})
 }
