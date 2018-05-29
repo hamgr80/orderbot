@@ -63,8 +63,9 @@ app.post('/webhook', function (req, res) {
       else{
         console.log('error in line user detail: ' + error);
         console.log('statuscode :' + response.statusCode);
-        console.log('response' + response.statusCode);
-        console.log('body' + body);
+        console.log('response :' + response.statusCode);
+        console.log('body :' + body);
+        console.log('options :' + options);
       }
     })
   }
