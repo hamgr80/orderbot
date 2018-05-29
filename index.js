@@ -169,8 +169,7 @@ function getLineUserDetail(ChannelAccessToken, LineUserId){
     request(options, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         // Print out the response body
-        console.log('body from message: ' + body.displayName);
-        body_ = body.displayName;
+        console.log('body from message: ' + body);
       }
       else{
         console.log('error in line user detail: ' + error);
@@ -178,8 +177,7 @@ function getLineUserDetail(ChannelAccessToken, LineUserId){
         console.log('response :' + response.statusCode);
         console.log('body :' + body);
         console.log('url :' + options.url);
-        body_ = error;
       }
+      return body;
     });
-    return body_;
 }
