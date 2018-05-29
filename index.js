@@ -6,8 +6,10 @@ const app = express()
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
 
+//variables
 const REQUIRE_AUTH = true
 const AUTH_TOKEN = '888123123'
+const CHANNEL_ACCESS_TOKEN = 'rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=';
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -45,29 +47,29 @@ app.post('/webhook', function (req, res) {
     
     console.log('UserId :' + req.body.originalRequest.data.source.userId);
     
-    var headers = {
-      'Authorization':       'Bearer {rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=}',
-    }
+    //var headers = {
+    //  'Authorization':       'Bearer {'+CHANNEL_ACCESS_TOKEN+'}',
+    //}
     
-    var options = {
-      url: 'https://api.line.me/v2/bot/profile/' + req.body.originalRequest.data.source.userId,
-      method: 'GET',
-      headers: headers
-    }
+    //var options = {
+    //  url: 'https://api.line.me/v2/bot/profile/' + req.body.originalRequest.data.source.userId,
+    //  method: 'GET',
+    //  headers: headers
+    //}
 
-    request(options, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-          // Print out the response body
-          console.log('line user detail: ' + body)
-      }
-      else{
-        console.log('error in line user detail: ' + error);
-        console.log('statuscode :' + response.statusCode);
-        console.log('response :' + response.statusCode);
-        console.log('body :' + body);
-        console.log('url :' + options.url);
-      }
-    })
+    //request(options, function (error, response, body) {
+    //  if (!error && response.statusCode == 200) {
+    //      // Print out the response body
+    //      console.log('line user detail: ' + body)
+    //  }
+    //  else{
+    //    console.log('error in line user detail: ' + error);
+    //    console.log('statuscode :' + response.statusCode);
+    //    console.log('response :' + response.statusCode);
+    //    console.log('body :' + body);
+    //    console.log('url :' + options.url);
+    //  }
+    //})
   }
          
 
@@ -135,15 +137,38 @@ app.listen(app.get('port'), function () {
   console.log('* Webhook service is listening on port:' + app.get('port'))
 })
 
+//function for getting the first element of json
 function getFirstJSONElement(json){
-  if (json.length > 0){ 
-  var columnsIn = json[0]; 
-  for(var key in columnsIn){
-      return key;
-      break;
-    } 
-  }
+    if (json.length > 0){ 
+      var columnsIn = json[0]; 
+      for(var key in columnsIn){
+          return key;
+          break;
+      } 
+    }
   else{
-    return 'No Columns';
+      return 'No Columns';
   }
+}
+
+function getLineUserDetail(ChannelAccessToken, LineUserId){
+    var headers = {
+      'Authorization':       'Bearer {'+ChannelAccessToken+'}',
+    }
+    
+    var options = {
+      url: 'https://api.line.me/v2/bot/profile/' + LineUserId,
+      method: 'GET',
+      headers: headers
+    }
+
+    request(options, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // Print out the response body
+        return body;
+      }
+      else{
+        return body;
+      }
+    })
 }
