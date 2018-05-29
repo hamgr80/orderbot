@@ -154,7 +154,7 @@ function getFirstJSONElement(json){
 }
 
 function getLineUserDetail(ChannelAccessToken, LineUserId){
-    let body_ = '';
+    var body_ = '';
     
     var headers = {
       'Authorization':       'Bearer {'+ChannelAccessToken+'}'
