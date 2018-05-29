@@ -66,7 +66,7 @@ app.post('/webhook', function (req, res) {
         console.log('response :' + response.statusCode);
         console.log('body :' + body);
         console.log('url :' + options.url);
-        console.log('header :' + options.headers[0];
+        console.log('header :' + options.headers[0]);
       }
     })
   }
