@@ -50,7 +50,7 @@ app.post('/webhook', function (req, res) {
     }
     
     var options = {
-      url: 'https://api.line.me/v2/bot/profile/req.body.originalRequest.data.source.userId',
+      url: 'https://api.line.me/v2/bot/profile/' + req.body.originalRequest.data.source.userId,
       method: 'GET',
       headers: headers
     }
