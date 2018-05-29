@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
+const syncRequest = require('sync-request')
 
 const app = express()
 app.use(bodyParser.json())
@@ -154,32 +155,10 @@ function getFirstJSONElement(json){
 }
 
 function getLineUserDetail(ChannelAccessToken, LineUserId){
-    var myVar = '';
-    
-    var headers = {
+  var res = syncRequest('GET', 'https://api.line.me/v2/bot/profile/' + LineUserId, {
+    headers: {
       'Authorization':       'Bearer {'+ChannelAccessToken+'}'
-    }
-    
-    var options = {
-      url: 'https://api.line.me/v2/bot/profile/' + LineUserId,
-      method: 'GET',
-      headers: headers
-    }
-
-    request(options, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        // Print out the response body
-        console.log('body from message: ' + body);
-        myVar = body;
-        console.log('body from message: ' + myVar);
-        return myVar;
-      }
-      else{
-        console.log('error in line user detail: ' + error);
-        console.log('statuscode :' + response.statusCode);
-        console.log('response :' + response.statusCode);
-        console.log('body :' + body);
-        console.log('url :' + options.url);
-      }
-    });
+    },
+  });  
+  return res.getBody();
 }
