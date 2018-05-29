@@ -48,31 +48,9 @@ app.post('/webhook', function (req, res) {
     
     console.log('UserId :' + req.body.originalRequest.data.source.userId);
     
-    const data = getLineUserDetail(CHANNEL_ACCESS_TOKEN, req.body.originalRequest.data.source.userId);
-    console.log('LineUserDetail: ' + data);
-    //var headers = {
-    //  'Authorization':       'Bearer {'+CHANNEL_ACCESS_TOKEN+'}',
-    //}
-    
-    //var options = {
-    //  url: 'https://api.line.me/v2/bot/profile/' + req.body.originalRequest.data.source.userId,
-    //  method: 'GET',
-    //  headers: headers
-    //}
-
-    //request(options, function (error, response, body) {
-    //  if (!error && response.statusCode == 200) {
-    //      // Print out the response body
-    //      console.log('line user detail: ' + body)
-    //  }
-    //  else{
-    //    console.log('error in line user detail: ' + error);
-    //    console.log('statuscode :' + response.statusCode);
-    //    console.log('response :' + response.statusCode);
-    //    console.log('body :' + body);
-    //    console.log('url :' + options.url);
-    //  }
-    //})
+    const userDetail = JSON.parse(getLineUserDetail(CHANNEL_ACCESS_TOKEN, req.body.originalRequest.data.source.userId));
+    console.log('LineUserDetail: ' + userDetail);
+    console.log('LineDisplayName: ' + userDetail.displayName);
   }
          
 
