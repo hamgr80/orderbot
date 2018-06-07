@@ -73,7 +73,7 @@ app.post('/webhook', function (req, res) {
   var webhookReply = 'Hello ' + userName + '! Welcome from the local3 webhook.'
   let webhookReply2 = '';
 
-  console.log('intent name' + INTENT_NAME);
+  console.log('intent name: ' + INTENT_NAME);
   
   // calling b2b rest service
   console.log('requesting post request to b2b');
