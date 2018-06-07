@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const line = require('@line/bot-sdk');
-//const syncRequest = require('sync-request')
 
 const app = express()
 app.use(bodyParser.json())
@@ -13,6 +12,7 @@ const REQUIRE_AUTH = true
 const AUTH_TOKEN = '888123123'
 const CHANNEL_ACCESS_TOKEN = 'rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=';
 
+//for getting line user profile
 const client = new line.Client({  channelAccessToken: CHANNEL_ACCESS_TOKEN });
 
 app.get('/', function (req, res) {
@@ -49,26 +49,21 @@ app.post('/webhook', function (req, res) {
     const lineUserId = req.body.originalRequest.data.source.userId;
     
     console.log('Source is :' + req.body.originalRequest.source);
-    console.log('Data.Source :' + req.body.originalRequest.data.source);
+    //console.log('Data.Source :' + req.body.originalRequest.data.source);
     
     console.log('UserId :' + lineUserId);
     
     client.getProfile(lineUserId)
       .then((profile) => {
-        console.log(profile.displayName);
-        console.log(profile.userId);
-        console.log(profile.pictureUrl);
-        console.log(profile.statusMessage);
+        console.log("Line Display Name: " + profile.displayName);
+        console.log("Line UserId: " + profile.userId);
+        console.log("Line Picture Url: " + profile.pictureUrl);
+        console.log("Line Status Message: " + profile.statusMessage);
        })
       .catch((err) => {
         console.log(err);
       });
-    
-    //const userDetail = JSON.parse(getLineUserDetail(CHANNEL_ACCESS_TOKEN, lineUserId));
-    //console.log('LineUserDetail: ' + userDetail);
-    //console.log('LineDisplayName: ' + userDetail.displayName);
   }
-         
 
   // parameters are stored in req.body.result.parameters
   var userName = req.body.result.parameters['given-name']
