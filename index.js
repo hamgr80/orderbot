@@ -7,13 +7,12 @@ const app = express()
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
 
-//variables
+//global variables
 const REQUIRE_AUTH = true
 const AUTH_TOKEN = '888123123'
 const CHANNEL_ACCESS_TOKEN = 'rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=';
-
-//for getting line user profile
-const client = new line.Client({  channelAccessToken: CHANNEL_ACCESS_TOKEN });
+const INTENT_NAME = req.body.result.metadata.intentName;
+const client = new line.Client({  channelAccessToken: CHANNEL_ACCESS_TOKEN }); //for getting line user profile
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -73,6 +72,8 @@ app.post('/webhook', function (req, res) {
   var webhookReply = 'Hello ' + userName + '! Welcome from the local3 webhook.'
   let webhookReply2 = '';
 
+  console.log('intent name' + INTENT_NAME);
+  
   // calling b2b rest service
   console.log('requesting post request to b2b');
   request.post({
