@@ -13,7 +13,8 @@ const AUTH_TOKEN = '888123123'
 const CHANNEL_ACCESS_TOKEN = 'rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=';
 var INTENT_NAME = "";
 const client = new line.Client({  channelAccessToken: CHANNEL_ACCESS_TOKEN }); //for getting line user profile
-const SignalR_Server_Url = "http://66.228.117.22/B2B_Integration%20with%20OSDP/messagebroadcast/PushToSpecificClient/";
+//const SignalR_Server_Url = "http://66.228.117.22/B2B_Integration%20with%20OSDP/messagebroadcast/PushToSpecificClient/";
+const SignalR_Server_Url = "http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/";
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
