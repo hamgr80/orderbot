@@ -14,7 +14,7 @@ const CHANNEL_ACCESS_TOKEN = 'rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblq
 var INTENT_NAME = "";
 const client = new line.Client({  channelAccessToken: CHANNEL_ACCESS_TOKEN }); //for getting line user profile
 //const SignalR_Server_Url = "http://66.228.117.22/B2B_Integration%20with%20OSDP/messagebroadcast/PushToSpecificClient/";
-const SignalR_Server_Url = "http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient/";
+const SignalR_Server_Url = "http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient2/";
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -81,8 +81,8 @@ app.post('/webhook', function (req, res) {
   console.log('requesting post request to b2b');
   request.post({
   headers: {'content-type' : 'application/x-www-form-urlencoded'},
-  url:   SignalR_Server_Url + '?requester=' + requester + '&query=' + query + '&clientid=' + clientid,
-  //url:   SignalR_Server_Url + '?requester=' + requester + '&clientid=' + clientid + '&intentName=' + INTENT_NAME,
+  //url:   SignalR_Server_Url + '?requester=' + requester + '&query=' + query + '&clientid=' + clientid,
+  url:   SignalR_Server_Url + '?requester=' + requester + '&clientid=' + clientid + '&intentName=' + INTENT_NAME,
   body:  'this is body'
   }, function(error, response, body) {
       if(!error && response.statusCode == 200) {
