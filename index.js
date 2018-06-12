@@ -94,8 +94,8 @@ app.post('/webhook', function (req, res) {
         console.log('clientid:', clientid);
         
         var json = JSON.parse(body);
-        //var data = JSON.parse(json); //for multiple lines
-        var data = json; //for scalar result
+        var data = JSON.parse(json); //for multiple lines
+        //var data = json; //for scalar result
         
         var firstElement = getFirstJSONElement(data);
         
@@ -105,7 +105,7 @@ app.post('/webhook', function (req, res) {
         }
         else{
           console.log('data:', data);
-          webhookReply2 = JSON.stringify(data[0]);
+          webhookReply2 = JSON.stringify(json[0]);
         }
         
         // the most basic success response
