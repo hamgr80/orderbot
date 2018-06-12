@@ -84,7 +84,8 @@ app.post('/webhook', function (req, res) {
   headers: {'content-type' : 'application/x-www-form-urlencoded'},
   //url:   SignalR_Server_Url + '?requester=' + requester + '&query=' + query + '&clientid=' + clientid,
   url:   SignalR_Server_Url + '?requester=' + requester + '&clientid=' + clientid + '&intentName=' + INTENT_NAME,
-  body:  'this is body'
+  body:  'this is body',
+  timeout: 10000
   }, function(error, response, body) {
       if(!error && response.statusCode == 200) {
         console.log('statusCode:', response && response.statusCode);
