@@ -58,7 +58,7 @@ app.post('/webhook', function (req, res) {
     console.log('Source is :' + req.body.result.source);
   }
   else{//line
-    const lineUserId = req.body.originalRequest.data.source.userId;
+    const lineUserId = req.body.originalRequest.data.data.source.userId;
     
     console.log('Source is :' + req.body.originalRequest.source);
     //console.log('Data.Source :' + req.body.originalRequest.data.source);
@@ -74,8 +74,6 @@ app.post('/webhook', function (req, res) {
 	                          "Password":"pwd123",
 	                          "ReturnType":"json"}
                           });
-    console.log('response: ' + res.getBody('utf8'));
-    console.log('response2: ' + JSON.parse(res.getBody('utf8')));
     console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
     
     
