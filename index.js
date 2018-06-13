@@ -75,6 +75,7 @@ app.post('/webhook', function (req, res) {
 	                          "ReturnType":"json"
                           });
     console.log('response: ' + JSON.stringify(res));
+    console.log('response2: ' + JSON.parse(res.getBody('utf8')));
     console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(res).Success);
     
     
