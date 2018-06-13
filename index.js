@@ -26,7 +26,8 @@ app.get('/webhook', function (req, res) {
 app.post('/webhook', function (req, res) {
   // we expect to receive JSON data from api.ai here.
   // the payload is stored on req.body
-  console.log('posrt request received with body: ' + req.body)
+  console.log('post request received')
+  console.log(req.body)
   
   if(apiVersion == 'V1')
     INTENT_NAME = req.body.result.metadata.intentName;
