@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const syncRequest = require('sync-request')
-//const line = require('@line/bot-sdk');
+const line = require('@line/bot-sdk');
 
 const app = express()
 app.use(bodyParser.json())
@@ -14,7 +14,7 @@ const REQUIRE_AUTH = true
 const AUTH_TOKEN = '888123123'
 const CHANNEL_ACCESS_TOKEN = 'rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=';
 var INTENT_NAME = "";
-//const client = new line.Client({  channelAccessToken: CHANNEL_ACCESS_TOKEN }); //for getting line user profile
+const client = new line.Client({  channelAccessToken: CHANNEL_ACCESS_TOKEN }); //for getting line user profile
 const SignalR_Server_Url = "http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient2/";
 
 app.get('/', function (req, res) {
