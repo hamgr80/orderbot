@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
-const syncRequest = require('sync-request')
+//const syncRequest = require('sync-request')
 const line = require('@line/bot-sdk');
 
 const app = express()
@@ -66,17 +66,17 @@ app.post('/webhook', function (req, res) {
     console.log('UserId :' + lineUserId);
     
     //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
-    var res = syncRequest('POST', 
-                          'http://66.155.19.127/PortalService/api/operations/', 
-                          {
-    	                          json:{"OperationId": "1",
-                                "UserId":"Hammad123",
-                                "Password":"pwd123",
-    	                          "ReturnType":"json"}
-                           });
-    console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
+    //var res = syncRequest('POST', 
+    //                     'http://66.155.19.127/PortalService/api/operations/', 
+    //                      {
+    //	                          json:{"OperationId": "1",
+    //                            "UserId":"Hammad123",
+    //                            "Password":"pwd123",
+    //	                          "ReturnType":"json"}
+    //                       });
+    //console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
     
-    
+    console.log('getting line user detail');
     client.getProfile(lineUserId)
       .then((profile) => {
         console.log("Line Display Name: " + profile.displayName);
