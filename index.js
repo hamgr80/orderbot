@@ -91,9 +91,9 @@ app.post('/webhook', function (req, res) {
 
   // parameters are stored in req.body.result.parameters
   var userName = req.body.result.parameters['given-name']
-  var requester = req.body.result.parameters['given-name'];
-  var query = req.body.result.parameters['query']//'select%20*%20from%20distributor';
-  var clientid = req.body.result.parameters['clientid']//'98038001';
+  var requester = 'john';//req.body.result.parameters['given-name'];
+  var query = 'kkkkk';//req.body.result.parameters['query']
+  var clientid = '98681001';//req.body.result.parameters['clientid']//'98038001';
   var webhookReply = 'Hello ' + userName + '! Welcome from the local3 webhook.'
   let webhookReply2 = '';
 
