@@ -74,6 +74,7 @@ app.post('/webhook', function (req, res) {
 	                          "Password":"pwd123",
 	                          "ReturnType":"json"
                           });
+    console.log('response: ' + res);
     console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(res).Success);
     
     
