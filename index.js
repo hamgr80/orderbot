@@ -59,6 +59,7 @@ app.post('/webhook', function (req, res) {
   }
   else{//line
     const lineUserId = req.body.originalRequest.data.data.source.userId;
+    console.log(req.body.originalRequest.data.data);
     
     console.log('Source is :' + req.body.originalRequest.source);
     //console.log('Data.Source :' + req.body.originalRequest.data.source);
