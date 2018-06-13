@@ -34,15 +34,19 @@ app.post('/webhook', function (req, res) {
   else
     INTENT_NAME = req.body.queryResult.intent.displayName;
 
+  console.log('intent name: ' + INTENT_NAME)
+  
   // we have a simple authentication
   if (REQUIRE_AUTH) {
     if (req.headers['auth-token'] !== AUTH_TOKEN) {
+      console.log('AUTH_TOKEN is not authorized');
       return res.status(401).send('Unauthorized')
     }
   }
 
   // and some validation too
   if (!req.body || !req.body.result || !req.body.result.parameters) {
+    console.log('validation failed');
     return res.status(400).send('Bad Request')
   }
 
