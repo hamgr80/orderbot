@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 //const syncRequest = require('sync-request')
-const line = require('@line/bot-sdk');
+//const line = require('@line/bot-sdk');
 
 const app = express()
 app.use(bodyParser.json())
@@ -14,7 +14,7 @@ const REQUIRE_AUTH = true
 const AUTH_TOKEN = '888123123'
 const CHANNEL_ACCESS_TOKEN = 'rtjUrmx58Nhv2+FsKPySBQPbdj0a3SQmPpnFDIunToKZfwZblqxyT8JW/sXVIG/BE6WBje8vJ6DLLk4iWkisQPZNUiWLfpu2gkqCUrcNMLbBfB45VqZPobdTswh2chcUOSedocSpEpWxLbi4xTPWyAdB04t89/1O/w1cDnyilFU=';
 var INTENT_NAME = "";
-const client = new line.Client({  channelAccessToken: CHANNEL_ACCESS_TOKEN }); //for getting line user profile
+//const client = new line.Client({  channelAccessToken: CHANNEL_ACCESS_TOKEN }); //for getting line user profile
 const SignalR_Server_Url = "http://169.50.64.42/SignalR/messagebroadcast/PushToSpecificClient2/";
 
 app.get('/', function (req, res) {
@@ -77,17 +77,17 @@ app.post('/webhook', function (req, res) {
     //                       });
     //console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
     
-    console.log('getting line user detail');
-    client.getProfile(lineUserId)
-      .then((profile) => {
-        console.log("Line Display Name: " + profile.displayName);
-        console.log("Line UserId: " + profile.userId);
-        console.log("Line Picture Url: " + profile.pictureUrl);
-        console.log("Line Status Message: " + profile.statusMessage);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    //console.log('getting line user detail');
+    //client.getProfile(lineUserId)
+    //  .then((profile) => {
+    //    console.log("Line Display Name: " + profile.displayName);
+    //    console.log("Line UserId: " + profile.userId);
+    //    console.log("Line Picture Url: " + profile.pictureUrl);
+    //    console.log("Line Status Message: " + profile.statusMessage);
+    //  })
+    //  .catch((err) => {
+    //    console.log(err);
+    //  });
   }
 
   // parameters are stored in req.body.result.parameters
