@@ -76,7 +76,7 @@ app.post('/webhook', function (req, res) {
                           });
     console.log('response: ' + res.getBody('utf8'));
     console.log('response2: ' + JSON.parse(res.getBody('utf8')));
-    console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(res.getBody('utf8')).Success);
+    console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
     
     
     //client.getProfile(lineUserId)
