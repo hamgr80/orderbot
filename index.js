@@ -122,6 +122,7 @@ app.post('/webhook', function (req, res) {
         
         if(firstElement == 'Error')
 	{
+	  console.log('first element is error');
           console.log('data:', data);
           webhookReply2 = data[0].Error;
         }
