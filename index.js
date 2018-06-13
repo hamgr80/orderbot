@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
+const syncRequest = require('sync-request')
 //const line = require('@line/bot-sdk');
 
 const app = express()
@@ -64,7 +65,17 @@ app.post('/webhook', function (req, res) {
     
     console.log('UserId :' + lineUserId);
     
-    //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID AND APIID)
+    //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
+    var res = syncRequest('POST', 
+                          'http://66.155.19.127/PortalService/api/operations/', 
+                          {
+	                          "OperationId": "1",
+	                          "UserId":"Hammad123",
+	                          "Password":"pwd123",
+	                          "ReturnType":"json"
+                          });
+    console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(res).Success);
+    
     
     //client.getProfile(lineUserId)
     //  .then((profile) => {
@@ -86,8 +97,6 @@ app.post('/webhook', function (req, res) {
   var webhookReply = 'Hello ' + userName + '! Welcome from the local3 webhook.'
   let webhookReply2 = '';
 
-  console.log('intent name: ' + INTENT_NAME);
-  
   // calling b2b rest service
   console.log('requesting post request to b2b');
   request.post({
