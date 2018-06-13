@@ -77,16 +77,16 @@ app.post('/webhook', function (req, res) {
     console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
     
     
-    //client.getProfile(lineUserId)
-    //  .then((profile) => {
-    //    console.log("Line Display Name: " + profile.displayName);
-    //    console.log("Line UserId: " + profile.userId);
-    //    console.log("Line Picture Url: " + profile.pictureUrl);
-    //    console.log("Line Status Message: " + profile.statusMessage);
-    //  })
-    //  .catch((err) => {
-    //    console.log(err);
-    //  });
+    client.getProfile(lineUserId)
+      .then((profile) => {
+        console.log("Line Display Name: " + profile.displayName);
+        console.log("Line UserId: " + profile.userId);
+        console.log("Line Picture Url: " + profile.pictureUrl);
+        console.log("Line Status Message: " + profile.statusMessage);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   // parameters are stored in req.body.result.parameters
