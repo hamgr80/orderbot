@@ -69,10 +69,10 @@ app.post('/webhook', function (req, res) {
     var res = syncRequest('POST', 
                           'http://66.155.19.127/PortalService/api/operations/', 
                           {
-	                          "OperationId": "1",
+	                          json:{"OperationId": "1",
 	                          "UserId":"Hammad123",
 	                          "Password":"pwd123",
-	                          "ReturnType":"json"
+	                          "ReturnType":"json"}
                           });
     console.log('response: ' + res.getBody('utf8'));
     console.log('response2: ' + JSON.parse(res.getBody('utf8')));
