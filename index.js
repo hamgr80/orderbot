@@ -125,7 +125,7 @@ app.post('/webhook', function (req, res) {
         }
         else{
           console.log('data:', data);
-          webhookReply2 = json[0].value;
+          webhookReply2 = JSON.parse(data)[0].value;
         }
         
         // the most basic success response
