@@ -6,6 +6,7 @@ const request = require('request')
 const app = express()
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
+const apiVersion = 'V1'
 
 //global variables
 const REQUIRE_AUTH = true
@@ -25,8 +26,12 @@ app.get('/webhook', function (req, res) {
 app.post('/webhook', function (req, res) {
   // we expect to receive JSON data from api.ai here.
   // the payload is stored on req.body
-  console.log(req.body)
-  INTENT_NAME = req.body.result.metadata.intentName;
+  console.log('posrt request received with body: ' + req.body)
+  
+  if(apiVersion == 'V1')
+    INTENT_NAME = req.body.result.metadata.intentName;
+  else
+    INTENT_NAME = req.body.queryResult.intent.displayName;
 
   // we have a simple authentication
   if (REQUIRE_AUTH) {
