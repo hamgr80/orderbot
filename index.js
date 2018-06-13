@@ -106,7 +106,8 @@ app.post('/webhook', function (req, res) {
   body:  'this is body',
   timeout: 10000
   }, function(error, response, body) {
-      if(!error && response.statusCode == 200) {
+      if(!error && response.statusCode == 200) 
+      {
         console.log('statusCode:', response && response.statusCode);
         console.log('body:', body);
         console.log('requester:', requester);
@@ -119,23 +120,27 @@ app.post('/webhook', function (req, res) {
         
         var firstElement = getFirstJSONElement(data);
         
-        if(firstElement == 'Error'){
+        if(firstElement == 'Error')
+	{
           console.log('data:', data);
           webhookReply2 = data[0].Error;
         }
-        else{
+        else
+	{
           console.log('data:', data);
           webhookReply2 = JSON.parse(data)[0].value;
         }
         
         // the most basic success response
-        res.status(200).json({
-        source: 'webhook',
-        speech: webhookReply2,
-        displayText: webhookReply2
+        response.status(200).json(
+	{
+        	source: 'webhook',
+        	speech: webhookReply2,
+        	displayText: webhookReply2
         })
       }
-      else{
+      else
+      {
         console.log('error:', error); 
         console.log('statusCode:', response && response.statusCode);
         console.log('requester:', requester);
@@ -143,7 +148,8 @@ app.post('/webhook', function (req, res) {
         console.log('clientid:', clientid);
         
         // the most basic error response
-        res.status(response.statusCode).json({
+        res.status(response.statusCode).json(
+	{
           source: 'webhook',
           speech: 'Error from b2b service:' + error,
           displayText: 'Error from b2b service:' + error
