@@ -48,7 +48,6 @@ app.post('/webhook', function (req, res) {
     
     console.log(req.body.originalRequest.data.data);
     console.log('Source is :' + req.body.originalRequest.source);
-    console.log('UserId :' + lineUserId);
     
     //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
     var res = syncRequest('POST', 
