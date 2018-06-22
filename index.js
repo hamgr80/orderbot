@@ -52,14 +52,20 @@ app.post('/webhook', function (req, res) {
     var res = syncRequest('POST', 
                          'http://66.155.19.127/PortalService/api/operations/', 
                           {
-    	                          json:{"OperationId":"5",
+    	                          //json:{"OperationId":"5",
+                                //      "UserId":"Hammad123",
+                                //      "Password":"pwd123",
+                                //      "LineId":"9999999999",
+                                //      "ActionId":2,
+                                //      "ReturnType":"json",
+                                //      "IntentKey":"check.collection.outstanding"}
+      
+                                json:{"OperationId": "1",
                                       "UserId":"Hammad123",
                                       "Password":"pwd123",
-                                      "LineId":"9999999999",
-                                      "ActionId":2,
-                                      "ReturnType":"json",
-                                      "IntentKey":"check.collection.outstanding"}
+    	                                "ReturnType":"json"}
                            });
+    console.log('response of portal service: ' + res.getBody('utf8'));
     console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
     
   }
