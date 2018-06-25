@@ -13,6 +13,7 @@ var lineUserId  = "";
 var LOGIN_ID = "";
 var PASSWORD = "";
 var webhookReply = "";
+const SignalR_URL = "http://66.155.19.127/PortalService/api/operations/";
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -51,6 +52,19 @@ app.post('/webhook', function (req, res) {
   if(!req.body.originalRequest){
     console.log('Source is :' + req.body.result.source);
     webhookReply = "this is webchat reply";
+    
+    var res = syncRequest('POST', 
+      SignalR_URL, 
+      {
+    	  json:{"OperationId":"6",
+              "UserId":"",
+              "Password":"",
+              "LineId":"",
+              "ActionId":2,
+              "ReturnType":"json",
+              "IntentKey":INTENT_NAME}
+      });
+    
     res.status(200).json({
         	source: 'webhook',
         	speech: webhookReply,
@@ -67,21 +81,17 @@ app.post('/webhook', function (req, res) {
     
     //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
     var res = syncRequest('POST', 
-                         'http://66.155.19.127/PortalService/api/operations/', 
-                          {
-    	                          json:{"OperationId":"5",
-                                      "UserId":LOGIN_ID,
-                                      "Password":PASSWORD,
-                                      "LineId":lineUserId,
-                                      "ActionId":2,
-                                      "ReturnType":"json",
-                                      "IntentKey":INTENT_NAME}
-      
-                                //json:{"OperationId": "1",
-                                //      "UserId":"Hammad123",
-                                //      "Password":"pwd123",
-    	                          //      "ReturnType":"json"}
-                           });
+      SignalR_URL, 
+      {
+    	  json:{"OperationId":"5",
+              "UserId":LOGIN_ID,
+              "Password":PASSWORD,
+              "LineId":lineUserId,
+              "ActionId":2,
+              "ReturnType":"json",
+              "IntentKey":INTENT_NAME}
+      });
+    
     console.log('response of portal service: ' + res.getBody('utf8'));
     console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
     
