@@ -53,7 +53,7 @@ app.post('/webhook', function (req, res) {
     console.log('Source is :' + req.body.result.source);
     webhookReply = "this is webchat reply";
     
-    var res = syncRequest('POST', 
+    var resSR = syncRequest('POST', 
       SignalR_URL, 
       {
     	  json:{"OperationId":"6",
@@ -64,7 +64,7 @@ app.post('/webhook', function (req, res) {
               "ReturnType":"json",
               "IntentKey":INTENT_NAME}
       });
-    
+    webhookReply += " " + JSON.parse(JSON.parse(res.getBody('utf8'))).Message
     res.status(200).json({
         	source: 'webhook',
         	speech: webhookReply,
