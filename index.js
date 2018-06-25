@@ -10,8 +10,8 @@ const REQUIRE_AUTH = true
 const AUTH_TOKEN = '888123123'
 var INTENT_NAME = "";
 var lineUserId  = "";
-var LOGIN_ID = req.body.result.parameters['login_id'];
-var PASSWORD = req.body.result.parameters['password'];
+var LOGIN_ID = "";
+var PASSWORD = "";
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
