@@ -10,8 +10,8 @@ const REQUIRE_AUTH = true
 const AUTH_TOKEN = '888123123'
 var INTENT_NAME = "";
 var lineUserId  = "";
-var LOGIN_ID = "";
-var PASSWORD = "";
+var LOGIN_ID = req.body.result.parameters['login_id'];
+var PASSWORD = req.body.result.parameters['password'];
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -28,9 +28,7 @@ app.post('/webhook', function (req, res) {
   
   INTENT_NAME = req.body.result.metadata.intentName;
   console.log('intent name: ' + INTENT_NAME)
-  
-  if()
-  
+    
   if (REQUIRE_AUTH) {
     if (req.headers['auth-token'] !== AUTH_TOKEN) {
       console.log('AUTH_TOKEN is not authorized');
@@ -60,8 +58,8 @@ app.post('/webhook', function (req, res) {
                          'http://66.155.19.127/PortalService/api/operations/', 
                           {
     	                          json:{"OperationId":"5",
-                                      "UserId":"Hammad123",
-                                      "Password":"pwd123",
+                                      "UserId":LOGIN_ID,
+                                      "Password":PASSWORD,
                                       "LineId":lineUserId,
                                       "ActionId":2,
                                       "ReturnType":"json",
