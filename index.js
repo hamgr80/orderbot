@@ -12,6 +12,7 @@ var INTENT_NAME = "";
 var lineUserId  = "";
 var LOGIN_ID = "";
 var PASSWORD = "";
+var webhookReply = "";
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -43,11 +44,17 @@ app.post('/webhook', function (req, res) {
   
   if(!req.body.originalRequest){//webchat
     console.log('Source is :' + req.body.result.source);
+    webhookReply = "this is webchat reply";
+    res.status(200).json({
+        	source: 'webhook',
+        	speech: webhookReply,
+        	displayText: webhookReply
+    })
   }
   
   else{//line
     lineUserId = req.body.originalRequest.data.data.source.userId;
-    
+    webhookReply = "this is line reply";
     console.log(req.body.originalRequest.data.data);
     console.log('Source is :' + req.body.originalRequest.source);
     
