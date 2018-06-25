@@ -10,6 +10,8 @@ const REQUIRE_AUTH = true
 const AUTH_TOKEN = '888123123'
 var INTENT_NAME = "";
 var lineUserId  = "";
+var LOGIN_ID = "";
+var PASSWORD = "";
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -26,6 +28,8 @@ app.post('/webhook', function (req, res) {
   
   INTENT_NAME = req.body.result.metadata.intentName;
   console.log('intent name: ' + INTENT_NAME)
+  
+  if()
   
   if (REQUIRE_AUTH) {
     if (req.headers['auth-token'] !== AUTH_TOKEN) {
@@ -49,22 +53,24 @@ app.post('/webhook', function (req, res) {
     console.log(req.body.originalRequest.data.data);
     console.log('Source is :' + req.body.originalRequest.source);
     
+    
+    
     //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
     var res = syncRequest('POST', 
                          'http://66.155.19.127/PortalService/api/operations/', 
                           {
-    	                          //json:{"OperationId":"5",
-                                //      "UserId":"Hammad123",
-                                //      "Password":"pwd123",
-                                //      "LineId":"9999999999",
-                                //      "ActionId":2,
-                                //      "ReturnType":"json",
-                                //      "IntentKey":"check.collection.outstanding"}
-      
-                                json:{"OperationId": "1",
+    	                          json:{"OperationId":"5",
                                       "UserId":"Hammad123",
                                       "Password":"pwd123",
-    	                                "ReturnType":"json"}
+                                      "LineId":lineUserId,
+                                      "ActionId":2,
+                                      "ReturnType":"json",
+                                      "IntentKey":INTENT_NAME}
+      
+                                //json:{"OperationId": "1",
+                                //      "UserId":"Hammad123",
+                                //      "Password":"pwd123",
+    	                          //      "ReturnType":"json"}
                            });
     console.log('response of portal service: ' + res.getBody('utf8'));
     console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
