@@ -13,7 +13,7 @@ var lineUserId  = "";
 var LOGIN_ID = "";
 var PASSWORD = "";
 var webhookReply = "";
-const SignalR_URL = "http://66.155.19.127/PortalService/api/operations/";
+const PortalService_URL = "http://66.155.19.127/PortalService/api/operations/";
 
 app.get('/', function (req, res) {
   res.send('Use the /webhook endpoint.')
@@ -54,7 +54,7 @@ app.post('/webhook', function (req, res) {
     webhookReply = "this is webchat reply";
     
     var resSR = syncRequest('POST', 
-      SignalR_URL, 
+      PortalService_URL, 
       {
     	  json:{"OperationId":"6",
               "UserId":"",
@@ -81,7 +81,7 @@ app.post('/webhook', function (req, res) {
     
     //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
     var res = syncRequest('POST', 
-      SignalR_URL, 
+      PortalService_URL, 
       {
     	  json:{"OperationId":"5",
               "UserId":LOGIN_ID,
