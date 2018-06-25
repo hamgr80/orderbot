@@ -73,6 +73,20 @@ app.post('/webhook', function (req, res) {
     console.log('response of portal service: ' + res.getBody('utf8'));
     console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
     
+    //if(res.statusCode == 200){
+    //  res.status(200).json({
+    //    	source: 'webhook',
+    //    	speech: webhookReply,
+    //    	displayText: webhookReply
+    //  })
+    //}
+    //else{
+    //  res.status(response.statusCode).json({
+    //      source: 'webhook',
+    //      speech: 'Error from b2b service:' + error,
+    //      displayText: 'Error from b2b service:' + error
+    //  })
+    //}
   }
   
   
