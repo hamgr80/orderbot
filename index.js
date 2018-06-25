@@ -28,7 +28,12 @@ app.post('/webhook', function (req, res) {
   console.log(req.body)
   
   INTENT_NAME = req.body.result.metadata.intentName;
+  LOGIN_ID = req.body.result.parameters['login_id'];
+  PASSWORD = req.body.result.parameters['password'];
+  
   console.log('intent name: ' + INTENT_NAME)
+  console.log('login id: ' + LOGIN_ID)
+  console.log('password: ' + PASSWORD)
     
   if (REQUIRE_AUTH) {
     if (req.headers['auth-token'] !== AUTH_TOKEN) {
@@ -42,7 +47,8 @@ app.post('/webhook', function (req, res) {
     return res.status(400).send('Bad Request')
   }
   
-  if(!req.body.originalRequest){//webchat
+  //webchat
+  if(!req.body.originalRequest){
     console.log('Source is :' + req.body.result.source);
     webhookReply = "this is webchat reply";
     res.status(200).json({
@@ -52,13 +58,12 @@ app.post('/webhook', function (req, res) {
     })
   }
   
-  else{//line
+  //line
+  else{
     lineUserId = req.body.originalRequest.data.data.source.userId;
     webhookReply = "this is line reply";
     console.log(req.body.originalRequest.data.data);
     console.log('Source is :' + req.body.originalRequest.source);
-    
-    
     
     //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
     var res = syncRequest('POST', 
