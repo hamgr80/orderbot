@@ -67,6 +67,8 @@ app.post('/webhook', function (req, res) {
     var json = resSR.getBody('utf8');
     webhookReply = json;
     
+    console.log(json);
+    
     res.status(200).json({
         	source: 'webhook',
         	speech: webhookReply,
@@ -96,6 +98,8 @@ app.post('/webhook', function (req, res) {
     
     var json = resSR.getBody('utf8')
     webhookReply = json;
+    
+    console.log(json);
     
     res.status(200).json({
         	source: 'webhook',
