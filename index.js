@@ -65,8 +65,10 @@ app.post('/webhook', function (req, res) {
       });
     console.log(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)
     var json = JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message;
-console.log("arsalan");    
-    console.log(JSON.parse(json)[0].VALUE);
+console.log("arsalan");
+    console.log(json.trim());
+    var myJSON = JSON.stringify(json.trim());
+    console.log(myJSON.VALUE);
     //console.log(JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE)
     webhookReply = json;
     
