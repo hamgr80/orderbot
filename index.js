@@ -52,7 +52,7 @@ app.post('/webhook', function (req, res) {
   if(!req.body.originalRequest){
     console.log('Source is :' + req.body.result.source);
     console.log('Calling SignalR service.....');
-    var resSR = syncRequest('POST', 
+    var resSR = syncRequest('POST',  
       PortalService_URL, 
       {
     	  json:{"OperationId":"6",
@@ -61,7 +61,8 @@ app.post('/webhook', function (req, res) {
               "LineId":"",
               "ActionId":2,
               "ReturnType":"str",
-              "IntentKey":INTENT_NAME}
+              "IntentKey":INTENT_NAME},
+        timeout:4000
       });
     console.log('Response received');
     
