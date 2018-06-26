@@ -63,7 +63,8 @@ app.post('/webhook', function (req, res) {
               "ReturnType":"json",
               "IntentKey":INTENT_NAME}
       });
-    webhookReply = JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message;//JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message
+    
+    webhookReply = JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE;
     res.status(200).json({
         	source: 'webhook',
         	speech: webhookReply,
@@ -74,7 +75,7 @@ app.post('/webhook', function (req, res) {
   //line
   else{
     lineUserId = req.body.originalRequest.data.data.source.userId;
-    webhookReply = "this is line reply";
+    
     console.log(req.body.originalRequest.data.data);
     console.log('Source is :' + req.body.originalRequest.source);
         
@@ -91,7 +92,7 @@ app.post('/webhook', function (req, res) {
               "IntentKey":INTENT_NAME}
       });
     
-    webhookReply += " " + JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message
+    webhookReply = JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE;
     res.status(200).json({
         	source: 'webhook',
         	speech: webhookReply,
