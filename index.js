@@ -63,24 +63,12 @@ app.post('/webhook', function (req, res) {
               "ReturnType":"json",
               "IntentKey":INTENT_NAME}
       });
+    console.log(resSR.getBody('utf8'));
     console.log(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)
     var json = JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message;
     
     var firstElement = getFirstJSONElement(json);
     console.log(firstElement);
-    //console.log("arsalan");
-    //console.log(json.trim());
-    //var jsonReply = json.trim();
-    //var json1 = '[  {    \"VALUE\": 10000.0  }]';
-    
-    //var we = "";
-    //var _webhookReplye = "";
-    //         we = JSON.parse(json1)[0].VALUE;
-    //console.log(JSON.parse(jsonReply));
-    //_webhookReplye = JSON.parse(jsonReply)[0].VALUE;
-    //console.log('AN'+we);
-    //console.log(_webhookReplye);
-    //console.log(JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE)
     webhookReply = json;
     
     res.status(200).json({
@@ -109,7 +97,7 @@ app.post('/webhook', function (req, res) {
               "ReturnType":"json",
               "IntentKey":INTENT_NAME}
       });
-    
+    console.log(resSR.getBody('utf8'));
     webhookReply = JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE;
     res.status(200).json({
         	source: 'webhook',
@@ -145,7 +133,6 @@ app.listen(app.get('port'), function () {
 
 //function for getting the first element of json
 function getFirstJSONElement(json){
-    json = JSON.parse(json);
     if (json.length > 0){ 
       var columnsIn = json[0]; 
       for(var key in columnsIn){
