@@ -94,14 +94,14 @@ app.post('/webhook', function (req, res) {
               "Password":PASSWORD,
               "LineId":lineUserId,
               "ActionId":2,
-              "ReturnType":"json",
+              "ReturnType":"str",
               "IntentKey":INTENT_NAME}
       });
     var json = resSR.getBody('utf8')
     console.log(json);
-    console.log(JSON.parse(json));
-    console.log(JSON.parse(json).Message);
-    webhookReply = JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE;
+    //console.log(JSON.parse(json));
+    //console.log(JSON.parse(json).Message);
+    webhookReply = json;//JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE;
     res.status(200).json({
         	source: 'webhook',
         	speech: webhookReply,
