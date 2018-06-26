@@ -69,11 +69,13 @@ console.log("arsalan");
     console.log(json.trim());
     var jsonReply = json.trim();
     var json1 = '[  {    \"VALUE\": 10000.0  }]';
-var we = "";
+    
+    var we = "";
     var _webhookReplye = "";
              we = JSON.parse(json1)[0].VALUE;
+    console.log(JSON.parse(jsonReply));
  _webhookReplye = JSON.parse(jsonReply)[0].VALUE;
-console.log('AN'+we);
+    console.log('AN'+we);
     console.log(_webhookReplye);
     //console.log(JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE)
     webhookReply = json;
