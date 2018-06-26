@@ -64,7 +64,7 @@ app.post('/webhook', function (req, res) {
               "IntentKey":INTENT_NAME}
       });
     console.log(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)
-    var json = JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message);
+    var json = JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message;
     
     var firstElement = getFirstJSONElement(json);
     console.log(firstElement);
@@ -145,6 +145,7 @@ app.listen(app.get('port'), function () {
 
 //function for getting the first element of json
 function getFirstJSONElement(json){
+    json = JSON.parse(json);
     if (json.length > 0){ 
       var columnsIn = json[0]; 
       for(var key in columnsIn){
