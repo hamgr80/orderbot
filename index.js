@@ -67,8 +67,12 @@ app.post('/webhook', function (req, res) {
     var json = JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message;
 console.log("arsalan");
     console.log(json.trim());
-    var myJSON = JSON.stringify(json.trim());
-    console.log(myJSON.VALUE);
+    
+    var json1 = '[  {    \"VALUE\": 10000.0  }]';
+var we = "";
+we = JSON.parse(json1)[0].VALUE;
+
+console.log(we);
     //console.log(JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE)
     webhookReply = json;
     
