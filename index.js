@@ -61,8 +61,7 @@ app.post('/webhook', function (req, res) {
               "LineId":"",
               "ActionId":2,
               "ReturnType":"str",
-              "IntentKey":INTENT_NAME},
-        timeout:4000
+              "IntentKey":INTENT_NAME}
       });
     console.log('Response received');
     
@@ -95,8 +94,7 @@ app.post('/webhook', function (req, res) {
               "LineId":lineUserId,
               "ActionId":2,
               "ReturnType":"str",
-              "IntentKey":INTENT_NAME},
-        timeout: 4000
+              "IntentKey":INTENT_NAME}
       });
     console.log('Response received');
     
