@@ -78,9 +78,9 @@ app.post('/webhook', function (req, res) {
     webhookReply = "this is line reply";
     console.log(req.body.originalRequest.data.data);
     console.log('Source is :' + req.body.originalRequest.source);
-    
+        
     //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
-    var res = syncRequest('POST', 
+    var resSR = syncRequest('POST', 
       PortalService_URL, 
       {
     	  json:{"OperationId":"5",
@@ -92,8 +92,15 @@ app.post('/webhook', function (req, res) {
               "IntentKey":INTENT_NAME}
       });
     
-    console.log('response of portal service: ' + res.getBody('utf8'));
-    console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(res.getBody('utf8'))).Success);
+    webhookReply += " " + JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message
+    res.status(200).json({
+        	source: 'webhook',
+        	speech: webhookReply,
+        	displayText: webhookReply
+    })
+    
+    console.log('response of portal service: ' + resSR.getBody('utf8'));
+    console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(resSR.getBody('utf8'))).Success);
     
     //if(res.statusCode == 200){
     //  res.status(200).json({
