@@ -25,7 +25,7 @@ app.get('/webhook', function (req, res) {
 
 
 app.post('/webhook', function (req, res) {
-  console.log('post request received')
+  console.log('===============post request received===============')
   console.log(req.body)
   
   INTENT_NAME = req.body.result.metadata.intentName;
@@ -96,7 +96,7 @@ app.post('/webhook', function (req, res) {
               "ReturnType":"str",
               "IntentKey":INTENT_NAME}
       });
-    console.log('Response receiced');
+    console.log('Response received');
     
     var json = resSR.getBody('utf8')
     webhookReply = json;
@@ -127,7 +127,7 @@ app.post('/webhook', function (req, res) {
     //}
   }
   
-  
+  console.log('===============post request finished===============')
 })
 
 app.listen(app.get('port'), function () {
