@@ -63,12 +63,8 @@ app.post('/webhook', function (req, res) {
               "ReturnType":"json",
               "IntentKey":INTENT_NAME}
       });
-    console.log(resSR.getBody('utf8'));
-    console.log(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)
-    var json = JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message;
     
-    var firstElement = getFirstJSONElement(json);
-    console.log(firstElement);
+    var json = resSR.getBody('utf8');
     webhookReply = json;
     
     res.status(200).json({
@@ -97,11 +93,10 @@ app.post('/webhook', function (req, res) {
               "ReturnType":"str",
               "IntentKey":INTENT_NAME}
       });
+    
     var json = resSR.getBody('utf8')
-    //console.log(json);
-    //console.log(JSON.parse(json));
-    //console.log(JSON.parse(json).Message);
-    webhookReply = json;//JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE;
+    webhookReply = json;
+    
     res.status(200).json({
         	source: 'webhook',
         	speech: webhookReply,
@@ -109,7 +104,6 @@ app.post('/webhook', function (req, res) {
     })
     
     console.log('response of portal service: ' + json);
-    //console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(resSR.getBody('utf8'))).Success);
     
     //if(res.statusCode == 200){
     //  res.status(200).json({
@@ -133,17 +127,3 @@ app.post('/webhook', function (req, res) {
 app.listen(app.get('port'), function () {
   console.log('* Webhook service is listening on port:' + app.get('port'))
 })
-
-//function for getting the first element of json
-function getFirstJSONElement(json){
-    if (json.length > 0){ 
-      var columnsIn = json[0]; 
-      for(var key in columnsIn){
-          return key;
-          break;
-      } 
-    }
-  else{
-      return 'No Columns';
-  }
-}
