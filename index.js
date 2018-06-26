@@ -66,7 +66,7 @@ app.post('/webhook', function (req, res) {
     console.log(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)
     var json = JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message;
     
-    var firstElement = getFirstJSONElement(data);
+    var firstElement = getFirstJSONElement(json);
     console.log(firstElement);
     //console.log("arsalan");
     //console.log(json.trim());
