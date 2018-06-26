@@ -51,7 +51,7 @@ app.post('/webhook', function (req, res) {
   //webchat
   if(!req.body.originalRequest){
     console.log('Source is :' + req.body.result.source);
-    
+    console.log('Calling SignalR service.....');
     var resSR = syncRequest('POST', 
       PortalService_URL, 
       {
@@ -63,11 +63,12 @@ app.post('/webhook', function (req, res) {
               "ReturnType":"str",
               "IntentKey":INTENT_NAME}
       });
+    console.log('Response received');
     
     var json = resSR.getBody('utf8');
     webhookReply = json;
     
-    console.log(json);
+    console.log("response from SignalR: " + json);
     
     res.status(200).json({
         	source: 'webhook',
@@ -82,7 +83,7 @@ app.post('/webhook', function (req, res) {
     
     console.log(req.body.originalRequest.data.data);
     console.log('Source is :' + req.body.originalRequest.source);
-        
+    console.log('Calling SignalR service.....');    
     //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
     var resSR = syncRequest('POST', 
       PortalService_URL, 
@@ -95,11 +96,12 @@ app.post('/webhook', function (req, res) {
               "ReturnType":"str",
               "IntentKey":INTENT_NAME}
       });
+    console.log('Response receiced');
     
     var json = resSR.getBody('utf8')
     webhookReply = json;
     
-    console.log(json);
+    console.log("response from SignalR: " + json);
     
     res.status(200).json({
         	source: 'webhook',
