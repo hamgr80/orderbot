@@ -60,7 +60,7 @@ app.post('/webhook', function (req, res) {
               "Password":"",
               "LineId":"",
               "ActionId":2,
-              "ReturnType":"json",
+              "ReturnType":"str",
               "IntentKey":INTENT_NAME}
       });
     
