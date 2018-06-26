@@ -97,9 +97,10 @@ app.post('/webhook', function (req, res) {
               "ReturnType":"json",
               "IntentKey":INTENT_NAME}
       });
-    console.log(resSR.getBody('utf8'));
-    console.log(JSON.parse(resSR.getBody('utf8')));
-    console.log(JSON.parse(resSR.getBody('utf8')).Message);
+    var json = resSR.getBody('utf8')
+    console.log(json);
+    console.log(JSON.parse(json));
+    console.log(JSON.parse(json).Message);
     webhookReply = JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE;
     res.status(200).json({
         	source: 'webhook',
