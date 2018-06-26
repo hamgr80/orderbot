@@ -64,7 +64,7 @@ app.post('/webhook', function (req, res) {
               "IntentKey":INTENT_NAME}
       });
     console.log(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)
-    var json = JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message;
+    var json = JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message);
     
     var firstElement = getFirstJSONElement(json);
     console.log(firstElement);
