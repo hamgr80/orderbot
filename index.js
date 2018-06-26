@@ -98,7 +98,7 @@ app.post('/webhook', function (req, res) {
               "IntentKey":INTENT_NAME}
       });
     var json = resSR.getBody('utf8')
-    console.log(json);
+    //console.log(json);
     //console.log(JSON.parse(json));
     //console.log(JSON.parse(json).Message);
     webhookReply = json;//JSON.parse(JSON.parse(JSON.parse(resSR.getBody('utf8'))).Message)[0].VALUE;
@@ -108,8 +108,8 @@ app.post('/webhook', function (req, res) {
         	displayText: webhookReply
     })
     
-    console.log('response of portal service: ' + resSR.getBody('utf8'));
-    console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(resSR.getBody('utf8'))).Success);
+    console.log('response of portal service: ' + json);
+    //console.log('user id: ' + lineUserId + ' authenticated = ' + JSON.parse(JSON.parse(resSR.getBody('utf8'))).Success);
     
     //if(res.statusCode == 200){
     //  res.status(200).json({
