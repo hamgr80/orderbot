@@ -83,6 +83,7 @@ app.post('/webhook', function (req, res) {
   else{
     //lineUserId = req.body.originalRequest.data.data.source.userId;
     lineUserId = '33333';
+    console.log(req.body.originalRequest.data.message);
     console.log(req.body.originalRequest.data.message.source.userId);
     
     console.log(req.body.originalRequest.data.data);
