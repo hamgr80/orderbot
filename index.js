@@ -52,7 +52,7 @@ app.post('/webhook', function (req, res) {
   //webchat
   if(!req.body.originalRequest){
     console.log('Source is :' + req.body.result.source);
-    console.log('Calling SignalR service.....');
+    console.log('Calling Portal service.....');
     console.log(PortalService_URL);
     var resSR = syncRequest('POST',  
       PortalService_URL, 
@@ -70,7 +70,7 @@ app.post('/webhook', function (req, res) {
     var json = resSR.getBody('utf8');
     webhookReply = json;
     
-    console.log("response from SignalR: " + json);
+    console.log("response from Portal: " + json);
     
     res.status(200).json({
         	source: 'webhook',
@@ -85,7 +85,7 @@ app.post('/webhook', function (req, res) {
     
     console.log(req.body.originalRequest.data.data);
     console.log('Source is :' + req.body.originalRequest.source);
-    console.log('Calling SignalR service.....');    
+    console.log('Calling Portal service.....');    
     console.log(PortalService_URL);
     //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
     var resSR = syncRequest('POST', 
@@ -104,7 +104,7 @@ app.post('/webhook', function (req, res) {
     var json = resSR.getBody('utf8')
     webhookReply = json;
     
-    console.log("response from SignalR: " + json);
+    console.log("response from Portal: " + json);
     
     res.status(200).json({
         	source: 'webhook',
