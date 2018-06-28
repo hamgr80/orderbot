@@ -82,11 +82,9 @@ app.post('/webhook', function (req, res) {
   //line
   else{
     //lineUserId = req.body.originalRequest.data.data.source.userId;
-    lineUserId = '33333';
-    console.log(req.body.originalRequest.data.source);
-    console.log(req.body.originalRequest.data.message.source.userId);
+    lineUserId = req.body.originalRequest.data.source.userId;
     
-    console.log(req.body.originalRequest.data.data);
+    console.log(req.body.originalRequest.data);
     console.log('Source is :' + req.body.originalRequest.source);
     console.log('Calling Portal service.....');    
     console.log(PortalService_URL);
