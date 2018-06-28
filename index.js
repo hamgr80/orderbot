@@ -53,6 +53,7 @@ app.post('/webhook', function (req, res) {
   if(!req.body.originalRequest){
     console.log('Source is :' + req.body.result.source);
     console.log('Calling SignalR service.....');
+    console.log(PortalService_URL);
     var resSR = syncRequest('POST',  
       PortalService_URL, 
       {
@@ -85,6 +86,7 @@ app.post('/webhook', function (req, res) {
     console.log(req.body.originalRequest.data.data);
     console.log('Source is :' + req.body.originalRequest.source);
     console.log('Calling SignalR service.....');    
+    console.log(PortalService_URL);
     //1. CALL TO PORTAL FOR AUTHENTICATION AND AUTHORIZATION SERVICE AND GET USER PROFILE (CLIENTID)
     var resSR = syncRequest('POST', 
       PortalService_URL, 
