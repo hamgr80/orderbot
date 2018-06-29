@@ -117,7 +117,7 @@ app.post('/webhook', function (req, res) {
         	displayText: webhookReply
     })
     
-    console.log('response of portal service: ' + json);
+    //console.log('response of portal service: ' + json);
     
     //if(res.statusCode == 200){
     //  res.status(200).json({
