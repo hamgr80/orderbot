@@ -13,6 +13,8 @@ var lineUserId  = "";
 var LOGIN_ID = "";
 var PASSWORD = "";
 var webhookReply = "";
+var SESSIONID_FOR_WEBCHAT = "";
+
 //const PortalService_URL = "http://66.155.19.127/PortalService/api/operations/"; //Kayako Server
 const PortalService_URL = "http://66.228.117.22/BotWebhookService/api/operations"; //QA Server
 
@@ -32,10 +34,12 @@ app.post('/webhook', function (req, res) {
   INTENT_NAME = req.body.result.metadata.intentName;
   LOGIN_ID = req.body.result.parameters['login_id'];
   PASSWORD = req.body.result.parameters['password'];
+  SESSIONID_FOR_WEBCHAT = req.body.sessionId;
   
   console.log('intent name: ' + INTENT_NAME)
   console.log('login id: ' + LOGIN_ID)
   console.log('password: ' + PASSWORD)
+  console.log('sessionid: ' + SESSIONID_FOR_WEBCHAT)
     
   if (REQUIRE_AUTH) {
     if (req.headers['auth-token'] !== AUTH_TOKEN) {
@@ -63,7 +67,9 @@ app.post('/webhook', function (req, res) {
               "LineId":"",
               "ActionId":2,
               "ReturnType":"str",
-              "IntentKey":INTENT_NAME}
+              "IntentKey":INTENT_NAME,
+              "Source":"webchat",
+              "Data":SESSIONID_FOR_WEBCHAT}
       });
     console.log('Response received');
     
@@ -102,7 +108,9 @@ app.post('/webhook', function (req, res) {
               "LineId":lineUserId,
               "ActionId":2,
               "ReturnType":"str",
-              "IntentKey":INTENT_NAME}
+              "IntentKey":INTENT_NAME,
+              "Source":"line",
+              "Data":""}
       });
     console.log('Response received');
     
